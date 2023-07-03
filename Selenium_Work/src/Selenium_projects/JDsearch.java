@@ -4,6 +4,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Set;
+
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -73,7 +76,7 @@ public class JDsearch {
 		WebElement searchkeyword = driver.findElement(By.xpath("(//div[@class = 'relative']//input)[1]"));
 		searchkeyword.click(); 
 		Thread.sleep(1000);
-		searchkeyword.sendKeys("QA Automation Tester"); 
+		searchkeyword.sendKeys("Software Tester"); 
 		Thread.sleep(1000);
 		searchkeyword.sendKeys(Keys.RETURN); 
 		
@@ -96,7 +99,11 @@ public class JDsearch {
 		Thread.sleep(1000);
 		
 		WebElement showres = driver.findElement(By.xpath("(//button[contains(@id,'ember')])[8]")); 
-		act.moveToElement(showres).click().build().perform(); /*
+		act.moveToElement(showres).click().build().perform(); 
+//----- Now automate to get the text from the webpage at this point-->
+		
+		
+		
 		
 		driver.get("https://www.microsoft.com/en-in/microsoft-365/excel?ms.officeurl=excel&rtc=1");
 		
@@ -128,7 +135,7 @@ public class JDsearch {
 		noMicro.click(); 
 		
 		Thread.sleep(3000);
-		
+	/*	
 		WebElement uselesscontinue = driver.findElement(By.xpath("//button[contains(@class, 'ms-Button ms-Button--primary root')]//span/span")); 
 		act.moveToElement(uselesscontinue).click().build().perform(); 
 		uselesscontinue.sendKeys(Keys.RETURN); 
@@ -139,12 +146,12 @@ public class JDsearch {
 		excel.sendKeys("Jobpage"); 
 		excel.click();
 		excel.sendKeys(Keys.RETURN);
-		
+		*/
 		WebElement jobpage = driver.findElement(By.xpath("(//div[contains(text(),'Jobpage')])[1]")); 
 		act.moveToElement(jobpage).click().build().perform(); 		
 		
 		Thread.sleep(1000);
-		*/
+		/*
 		String path = "C:\\Users\\siddr\\OneDrive\\Documents\\Jobpage.xlsx"; 
 		
 		InputStream file = new FileInputStream(path);
@@ -157,15 +164,7 @@ public class JDsearch {
 		
 		int last_cell = row.getLastCellNum(); // Getting the last cell number from the row number 3 
 		System.out.println("The lastcell number is: "+last_cell); // 2
-
 		
-		
-		
-		
-		
-
-		
-		/*
 		WebElement exceldomain = driver.findElement(By.xpath("//div[contains(@aria-label,'App result')]")); 
 		act.moveToElement(exceldomain).click().build().perform(); 
 		
@@ -175,6 +174,32 @@ public class JDsearch {
 		 "C:\Users\siddr\OneDrive\Documents\Jobpage.xlsx"
 
         */	
+		
+		String mainpage = driver.getWindowHandle(); 
+		System.out.println(mainpage); 
+		
+		Set<String> a = driver.getWindowHandles(); 
+		
+		ArrayList<String> addr = new ArrayList<String>(driver.getWindowHandles());
+		System.out.println(addr.get(1)); 
+		driver.switchTo().window(addr.get(1));
+		
+		WebElement frame_ref = driver.findElement(By.xpath("//iframe [@id = 'WacFrame_Excel_0']"));
+		driver.switchTo().frame(frame_ref); 		
+		
+		WebElement block1 = driver.findElement(By.xpath("//div[@id = 'm_excelWebRenderer_ewaCtl_selectionHighlight0-1-0']"));
+		act.moveToElement(block1).click().sendKeys("tv").build().perform(); 
+		
+		
+		
+		
+		
+	 
+	
+		
+		
+		
+		
 		
 	}
 
