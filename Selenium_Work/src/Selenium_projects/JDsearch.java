@@ -1,11 +1,14 @@
 package Selenium_projects;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Set;
+import java.io.IOException;
 
 
 import org.apache.poi.EncryptedDocumentException;
@@ -26,12 +29,15 @@ import org.openqa.selenium.devtools.v112.input.Input;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.interactions.*;
+import org.openqa.selenium.json.Json;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class JDsearch {
-
+	static String firstjob;
+	static String arr[];
+	
 	public static void main(String[] args) throws InterruptedException, EncryptedDocumentException, IOException {
 		
 		
@@ -102,9 +108,31 @@ public class JDsearch {
 		act.moveToElement(showres).click().build().perform(); 
 //----- Now automate to get the text from the webpage at this point-->
 		
+		Thread.sleep(1000);
 		
+		FileWriter fileWriter = new FileWriter("notepad.txt");
 		
+		for(int i=1;i<8;i++)
+		{
+		firstjob = driver.findElement(By.xpath("(//li[contains(@class,'ember-view   jobs-search-results__list-item')])["+i+"]")).getText();
+		arr[i] = firstjob;
+		System.out.println(firstjob);
+		System.out.println("==============================================");
+		   // Write the text data to the file
+		    fileWriter.write(arr[i]);
+		    System.out.println("Text data written to file successfully.");
+		}
 		
+		Thread.sleep(1000);
+	
+		File file = new File("notepad.txt");
+		String absolutePath = file.getAbsolutePath();
+		System.out.println("File location: " + absolutePath);
+	}
+}
+
+		
+		/*
 		driver.get("https://www.microsoft.com/en-in/microsoft-365/excel?ms.officeurl=excel&rtc=1");
 		
 		driver.manage().window().maximize(); 
@@ -147,34 +175,12 @@ public class JDsearch {
 		excel.click();
 		excel.sendKeys(Keys.RETURN);
 		*/
+		/*
 		WebElement jobpage = driver.findElement(By.xpath("(//div[contains(text(),'Jobpage')])[1]")); 
 		act.moveToElement(jobpage).click().build().perform(); 		
 		
 		Thread.sleep(1000);
-		/*
-		String path = "C:\\Users\\siddr\\OneDrive\\Documents\\Jobpage.xlsx"; 
-		
-		InputStream file = new FileInputStream(path);
-		
-		Workbook book = WorkbookFactory.create(file);
-		
-		Sheet sheet_loc = book.getSheet("Jobtype1"); 
-		
-		Row row = sheet_loc.getRow(1);
-		
-		int last_cell = row.getLastCellNum(); // Getting the last cell number from the row number 3 
-		System.out.println("The lastcell number is: "+last_cell); // 2
-		
-		WebElement exceldomain = driver.findElement(By.xpath("//div[contains(@aria-label,'App result')]")); 
-		act.moveToElement(exceldomain).click().build().perform(); 
-		
-		WebElement joblist = driver.findElement(By.xpath("//div[contains(text(), 'Joblist')]")); 
-		act.moveToElement(joblist).click().build().perform();
-		
-		 "C:\Users\siddr\OneDrive\Documents\Jobpage.xlsx"
-
-        */	
-		
+			
 		String mainpage = driver.getWindowHandle(); 
 		System.out.println(mainpage); 
 		
@@ -186,21 +192,11 @@ public class JDsearch {
 		
 		WebElement frame_ref = driver.findElement(By.xpath("//iframe [@id = 'WacFrame_Excel_0']"));
 		driver.switchTo().frame(frame_ref); 		
-		
-		WebElement block1 = driver.findElement(By.xpath("//div[@id = 'm_excelWebRenderer_ewaCtl_selectionHighlight0-1-0']"));
-		act.moveToElement(block1).click().sendKeys("tv").build().perform(); 
-		
-		
-		
-		
-		
-	 
-	
-		
-		
-		
-		
-		
-	}
-
-}
+		//div[contains(@id,'m_excelWebRenderer_ewaCtl_selectionHighlight')]/div
+		//div[@id = 'm_excelWebRenderer_ewaCtl_selectionHighlight0-1-0']
+		for(int k=1;k<14;k++)
+		{
+		WebElement block1 = driver.findElement(By.xpath("(//div[contains(@id,'m_excelWebRenderer_ewaCtl_selectionHighlight')])["+k+"]"));
+		act.moveToElement(block1).click().build().perform(); 
+		act.moveToElement(block1).sendKeys("tv").build().perform();
+		}*/
