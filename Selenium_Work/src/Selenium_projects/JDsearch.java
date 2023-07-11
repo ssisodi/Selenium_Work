@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.Set;
 import java.io.IOException;
 
@@ -82,7 +83,7 @@ public class JDsearch {
 		WebElement searchkeyword = driver.findElement(By.xpath("(//div[@class = 'relative']//input)[1]"));
 		searchkeyword.click(); 
 		Thread.sleep(1000);
-		searchkeyword.sendKeys("Software Tester"); 
+		searchkeyword.sendKeys("QA Automation Tester"); 
 		Thread.sleep(1000);
 		searchkeyword.sendKeys(Keys.RETURN); 
 		
@@ -110,17 +111,17 @@ public class JDsearch {
 		
 		Thread.sleep(1000);
 		
-		FileWriter fileWriter = new FileWriter("notepad.txt");
+	//	FileWriter fileWriter = new FileWriter("notepad.txt");
 		
 		for(int i=1;i<8;i++)
 		{
 		firstjob = driver.findElement(By.xpath("(//li[contains(@class,'ember-view   jobs-search-results__list-item')])["+i+"]")).getText();
-		arr[i] = firstjob;
+	//	arr[i] = firstjob;
 		System.out.println(firstjob);
 		System.out.println("==============================================");
 		   // Write the text data to the file
-		    fileWriter.write(arr[i]);
-		    System.out.println("Text data written to file successfully.");
+		//    fileWriter.write(arr[i]);
+		//    System.out.println("Text data written to file successfully.");
 		}
 		
 		Thread.sleep(1000);
@@ -128,6 +129,8 @@ public class JDsearch {
 		File file = new File("notepad.txt");
 		String absolutePath = file.getAbsolutePath();
 		System.out.println("File location: " + absolutePath);
+		
+		driver.quit(); 
 	}
 }
 
