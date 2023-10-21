@@ -21,7 +21,7 @@ public class AdvancedQ1 {
 		
 		WebDriver driver = new ChromeDriver(options);
 		
-		driver.get("https://www.orangehrm.com/");
+		driver.get("https://www.orangehrm.com/"); 
 		
 		driver.manage().window().maximize(); 
 		
